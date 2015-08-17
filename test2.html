@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="M2hj.GitHub.io : ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+    <!--meta http-equiv="refresh" content="5;url=http://cafe.naver.com/maple2community" /-->
+    <meta name="footerAppInvitation" content="카페앱으로 보기" />
+    <meta name="footerAppSchemeUrl" content="navercafe://specific_cafe?cafeId=27950174" />
+
+    <!--link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css"-->
+
+    <title>메투하자 공식카페로 이동합니다.</title>
+  </head>
+
+  <body>
+<div>잠시 후 바로 이동됩니다.</div>
+<div><a href="#" onclick="nclk(this, 'cfa.app', '', '');oCafeAppLauncher.run('navercafe://specific_cafe?cafeId=27950174');" class="u_ftsa">카페앱으로 보기</a></div>
+<script type="text/javascript">
+var LH = new mCafeCommon.LH_create();
+$Fn(mCafeCommon.LH_exec, this).attach(window, "load");
+LH.add("mCafeCommon.closeScroll()");
+BMR.run('http://sp.naver.com/sp');
+$Element("<div></div>").html(); // 진도 버그 대응용
+var oUtil = new nhn.Utility();
+var oCafeAppLauncher = new nhn.AppLauncher({
+    "sAPPName" : "네이버 카페",
+    "sInstallURLForIOS" : "http://itunes.apple.com/app/id420615104?mt=8",
+    "sInstallURLForANDROID" : "market://details?id=com.nhn.android.navercafe"
+});
+
+
+var cafeSecedeManager = new CafeSecedeManager({clubId: '27950174'});
+
+
+
+var oCafeJoinInfoManager = new CafeJoinInfoManager();
+
+
+</script>
+  </body>
+</html>
