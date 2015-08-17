@@ -7,6 +7,7 @@
     <meta name="description" content="M2hj.GitHub.io : ">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
     <!--meta http-equiv="refresh" content="5;url=http://cafe.naver.com/maple2community" /-->
+    <meta name="footerAppNClickValue" content="cfa.app" />
     <meta name="footerAppInvitation" content="카페앱으로 보기" />
     <meta name="footerAppSchemeUrl" content="navercafe://specific_cafe?cafeId=27950174" />
 
@@ -39,6 +40,26 @@ var cafeSecedeManager = new CafeSecedeManager({clubId: '27950174'});
 var oCafeJoinInfoManager = new CafeJoinInfoManager();
 
 
+</script>
+<script type="text/javascript">
+
+
+
+
+(function changeTitle(pageTitle) {
+	var cafenameTitle = "메이플스토리2 메인카페 - 메투하자!";
+	
+	if(false) {
+		pageTitle = "" + ',' + cafenameTitle + ' : ' + '네이버 카페';
+	} else {
+		pageTitle = cafenameTitle + ' : ' + '네이버 카페';
+	}
+	
+	top.document.title = pageTitle;
+})();
+var appLauncherUtil = new CafeAppLauncherUtil({
+    isIPhone : false
+});
 </script>
   </body>
 </html>
