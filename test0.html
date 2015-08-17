@@ -7,7 +7,7 @@
 	<script type="text/javascript">
 		// 마켓 주소 세팅을 미리 해두었습니다. a=안드로이드, i=iOS
 		var market_a = "market://details?id=com.nhn.android.navercafe";
-		var market_i = "https://itunes.apple.com/app/id420615104";
+		var market_i = "https://itunes.apple.com/app/id420615104?mt=8";
 		 
 		var currentOS;
 		var mobile = (/iphone|ipad|ipod|android/i.test(navigator.userAgent.toLowerCase()));
@@ -32,20 +32,41 @@
 		// 바로재생, 다운로드 버튼 클릭
 		function checkAppInstall() {
 			// 앱에 설정해놓은 커스텀 스킴. 여기선 "customScheme"
-			var url = "navercafe://specific_cafe?cafeId=27950174";
+			var url = "customScheme://blahblah~";
 			 
 			if(currentOS == "android") {
-				// 안드로이드는 미리 만들어둔 iframe에 
-				var invisible_div = document.getElementById("invisible_div");
-				invisible_div.innerHTML = "<iframe src=" + url + " onload="goMarket()"></iframe>";
+				    if (userAgent.match(/Chrome/)) {
+         // 안드로이드의 크롬에서는 intent만 동작하기 때문에 intent로 호출해야함
+         setTimeout(function() {
+              location.href = "intent://specific_cafe?cafeId=27950174#Intent; scheme=navercafe; action=..;category=..; package=com.nhn.android.navercafe; end;";
+         }, 1000);
+    } else {
+        // 크롬 이외의 브라우저들
+        setTimeout(
+           function() {
+              if ((new Date()).getTime() - visitedAt < 2000) {
+                 location.href = "market://details?id=com.nhn.android.navercafe";
+              }
+          }, 500);
+
+          var iframe = document.createElement('iframe');
+          iframe.style.visibility = 'hidden';
+          iframe.src = 'navercafe://specific_cafe?cafeId=27950174';
+          document.body.appendChild(iframe);
+          document.body.removeChild(iframe); // back 호출시 캐싱될 수 있으므로 제거
+     }
 			} else if(currentOS == "ios") {
-				setTimeout( function() {
-					goMarket();
-				}, 1000);
-		 
-				location.href = url;
-			} else {
-				location.replace('http://cafe.naver.com/maple2community');
+			 var visitedAt = (new Date()).getTime(); // 방문 시간
+			 setTimeout(
+      function() {
+          if ((new Date()).getTime() - visitedAt < 2000) {
+               location.href = "https://itunes.apple.com/app/id420615104?mt=8";
+          }
+       }, 500);
+
+   setTimeout(function() { 
+        location.href = "navercafe://specific_cafe?cafeId=27950174";
+    }, 0);
 			}
 		 
 			return false;
@@ -59,7 +80,6 @@
 				location.href=market_i;
 			} else {
 				/* 기타 OS일 때 */
-				location.replace('http://cafe.naver.com/maple2community');
 			}
 		}
 	</script>
